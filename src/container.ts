@@ -1,7 +1,7 @@
 import { ConstructorFunction } from './types/constructor-function';
 
 export class Container {
-  private dependencies: { [key: string]: ConstructorFunction } = {};
+  // Dictionary of instances of registered classes.
   private instances: { [key: string]: any } = {};
 
   /**
@@ -9,7 +9,10 @@ export class Container {
    * @param dependency the class to be registered.
    */
   public register = <T extends ConstructorFunction>(dependency: T): void => {
-    this.dependencies[dependency.name] = dependency;
+    if (this.instances[dependency.name]) {
+      throw new Error(`The dependency ${dependency.name} is already registered`);
+    }
+    this.instances[dependency.name] = new dependency();
   };
 
   /**
@@ -18,7 +21,7 @@ export class Container {
    */
   public resolve = <T>(dependency: new () => T): T => {
     if (!this.instances[dependency.name]) {
-      this.instances[dependency.name] = new dependency();
+      throw new Error(`The dependency ${dependency.name} is not registered`);
     }
     return this.instances[dependency.name];
   };
