@@ -1,8 +1,12 @@
 {
   "name": "ioc-container-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "IoC container for dependency injection.",
-  "main": "index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "build": "rimraf ./build && tsc",
     "start:dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts",
