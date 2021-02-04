@@ -8,6 +8,19 @@ IoC container for dependency injection, written in TypeScript.
 npm install ioc-container-ts
 ```
 
+If you want to use the TypeScript decorators included in this library, you will need to add the following to your `tsconfig.json` file:
+
+```
+{
+  ...
+  "compilerOptions": {
+    ...
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
+```
+
 ## Usage
 
 To create a new container:
@@ -31,7 +44,7 @@ Or, using the `@injectable` decorator:
 class Foo {}
 ```
 
-Use `resolve` to resolve the instance of a registered class:
+Once a class is registered, you can use `resolve` to resolve its instance:
 
 ```
 resolve(Foo);
