@@ -55,7 +55,7 @@ describe('container', () => {
 
       class TestClass2 {
         @container.inject(TestClass)
-        testClassInstance;
+        testClassInstance: any;
       }
 
       expect(new TestClass2().testClassInstance).toBeInstanceOf(TestClass);
@@ -67,7 +67,7 @@ describe('container', () => {
 
         class TestClass2 {
           @container.inject(TestClass)
-          testClassInstance;
+          testClassInstance: any;
         }
       }).toThrow(`The dependency TestClass is not registered`);
     });
